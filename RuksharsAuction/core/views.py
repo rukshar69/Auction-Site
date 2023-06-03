@@ -21,9 +21,14 @@ def index(request):
         item.save()
 
     #choose items to show on the gallery
-    items = Item.objects.filter(is_bid_close=False,auction_end_datetime__gt=timezone.now()).order_by('-auction_end_datetime')
+
+    # GET ITEM WHOSE BIDS ARE OPEN
+    items_bid_open = Item.objects.filter(is_bid_close=False,auction_end_datetime__gt=timezone.now()).order_by('-auction_end_datetime')
+    # GET ITEM WHOSE BIDS ARE CLOSED
+    items_bid_close = Item.objects.filter(is_bid_close=True) 
     return render(request, 'core/index.html', {
-        'items': items,
+        'items_bid_open': items_bid_open,
+        'items_bid_close': items_bid_close,
     })
 
 
