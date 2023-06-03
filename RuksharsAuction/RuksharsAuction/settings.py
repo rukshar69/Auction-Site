@@ -46,8 +46,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'item',
-    'core',
+    'item', #auction product creation management
+    'core', #login, logout, main item gallery
+    'dashboard', #showing products made by certain user
+    'tempus_dominus', #to add calendar and clock time picker in front end
     
 ]
 
