@@ -5,12 +5,26 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate
-
+from item.models import  Item
+from django.utils import timezone
 # Create your views here.
 @login_required
 def index(request):
+    #Close bids for items whose end date is before now
+    items_need_to_close_bid= Item.objects.filter(is_bid_close=False,auction_end_datetime__lte=timezone.now())
+    print('Items whose bids are now closing:')
+    for item in items_need_to_close_bid:
+        print(item.name)
+        # Modify the field value
+        item.is_bid_close = True #closing the bid
+        # Save the object to persist the changes
+        item.save()
 
-    return render(request, 'core/index.html')
+    #choose items to show on the gallery
+    items = Item.objects.filter(is_bid_close=False,auction_end_datetime__gt=timezone.now()).order_by('-auction_end_datetime')
+    return render(request, 'core/index.html', {
+        'items': items,
+    })
 
 
 def user_login(request):
@@ -27,21 +41,6 @@ def user_login(request):
         form = CustomAuthenticationForm()
     return render(request, 'core/login.html', {'form': form})
 
-
-# def signup(request):
-#     if request.method == 'POST':
-#         form = SignupForm(request.POST)
-
-#         if form.is_valid():
-#             form.save()
-
-#             return redirect('/login/')
-#     else:
-#         form = SignupForm()
-
-#     return render(request, 'core/signup.html', {
-#         'form': form
-#     })
 
 def signup(request):
     if request.method == 'POST':
