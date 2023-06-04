@@ -1,9 +1,18 @@
 from django import forms
-from .models import Item
+from .models import Item, Bid
 from tempus_dominus.widgets import DatePicker, TimePicker, DateTimePicker
 
 INPUT_CLASSES = 'w-full py-4 px-6 rounded-xl border'
 
+class BidPlacementForm(forms.ModelForm):
+    class Meta:
+        model = Bid
+        fields = ( 'bid_price',)
+        widgets ={
+            'bid_price': forms.TextInput(attrs={
+                'class': INPUT_CLASSES
+            })
+        }
 class NewItemForm(forms.ModelForm):
     class Meta:
         model = Item

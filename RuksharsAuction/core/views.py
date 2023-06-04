@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import SignupForm, LoginForm, CustomUserCreationForm,  CustomAuthenticationForm
+from .forms import CustomUserCreationForm,  CustomAuthenticationForm
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views as auth_views

@@ -10,7 +10,7 @@
 
     <div class="col-span-2 p-6 bg-gray-100 rounded-xl">
         <h1 class="mb-6 text-3xl">{{ item.name }}</h1>
-        <p class="text-gray-500"><strong>Minimum Bid Price: </strong>{{ item.price }}</p>
+        <p class="text-gray-500"><strong>Minimum Bid Price: {{ item.minimum_bid_price }}</strong></p>
         <p class="text-gray-500"><strong>Auction End Date: </strong>{{ item.auction_end_datetime }}</p>
         <p class="text-gray-500"><strong>Seller: </strong>{{ item.created_by.username }}</p>
     
@@ -21,7 +21,41 @@
             </p>
         {% endif %}
 
-    </div>
+        <hr>
+
+        <!-- SHOW WHO PLACED BIDS IF ANY -->
+        <div class="mt-5">
+            {% if bids|length == 0 %}
+                <h1 class="mb-6 text-2xl">No one placed a bid yet!!</h1>
+            {% else %}
+                <h1 class="mb-6 text-2xl">People who placed bids:</h1>
+                {% for b in bids %}
+                    <div>
+                        <div class="p-6 bg-white rounded-b-xl">
+                            <p class="text-gray-500">{{ b.bid_placed_by.username }}: {{ b.bid_price }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <hr>
+
+        
+        {% if request.user.username != item.created_by.username and  not item.is_bid_close %}
+
+            {% if not bid.bid_available %}
+                <p class="mt-2 text-2xl"><strong>No bid from you yet!!</strong></p>
+            {% else %}
+                <p class="mt-2 text-2xl"><strong>Previous bid by you: {{ bid.bid_price }}</strong></p>
+            {% endif %}
+            <hr>
+            <a href="{% url 'item:submit_bid' item.id %}">
+                <button class="mt-6 py-4 px-8 text-lg bg-purple-500 hover:bg-purple-700 rounded-xl text-white">Place/Update Bid</button>
+            </a>
+        
+        {% endif %}
+    </div>    
+
 
 </div>
 

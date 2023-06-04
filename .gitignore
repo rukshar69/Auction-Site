@@ -3,3 +3,4 @@ migrations*
 .env*
 user.txt
 CustomUserTest
+pending_tasks.txt
