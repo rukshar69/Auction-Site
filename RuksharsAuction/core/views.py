@@ -15,7 +15,12 @@ def index(request):
     print('Items whose bids are now closing:')
     for item in items_need_to_close_bid:
         print(item.name)
-        #item_bids = item.bids.filter()
+        max_bid = item.bids.filter(bid_price__gt=item.minimum_bid_price).order_by('-bid_price', 'updated_at').first() #get the bid with the hightest price with the earliest time
+        if max_bid is not None:
+            print('Max bid: ', max_bid.bid_price, ' by: ', max_bid.bid_placed_by.username)
+            max_bid.is_winner = True
+            max_bid.save()
+    
         # Modify the field value
         item.is_bid_close = True #closing the bid
         # Save the object to persist the changes

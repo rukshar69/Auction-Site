@@ -23,6 +23,7 @@ class Bid(models.Model):
     bid_placed_by = models.ForeignKey(CustomUser, related_name='bids', on_delete=models.CASCADE)
     bid_placed_at = models.DateTimeField(auto_now_add=True)
     is_winner = models.BooleanField(default=False) #did the user win the bid
+    updated_at = models.DateTimeField(auto_now=True) #keep track of bid updates
     def __str__(self):
         return self.item.name + '_' + self.bid_placed_by.username
 

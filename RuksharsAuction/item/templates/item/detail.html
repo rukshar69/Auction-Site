@@ -65,7 +65,13 @@
             <a href="{% url 'item:submit_bid' item.id %}">
                 <button class="mt-6 py-4 px-8 text-lg bg-purple-500 hover:bg-purple-700 rounded-xl text-white">Place/Update Bid</button>
             </a>
-        
+        {% endif %}
+
+        {% if item.is_bid_close %}
+            <p class="mt-2 text-2xl"><strong>BID CLOSED!!</strong></p>
+            {% if max_bid is not None %}
+                <p class="mt-2 bg-teal-500 rounded-sm text-2xl"><strong>BID WINNER: {{ max_bid.bid_placed_by.username }} || {{ max_bid.bid_price }}</strong></p>
+            {% endif %}
         {% endif %}
     </div>    
 

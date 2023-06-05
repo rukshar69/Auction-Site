@@ -30,9 +30,13 @@ def new_item(request):
 def item_detail(request, pk):
     item = get_object_or_404(Item, pk=pk)
     item_bids = item.bids.all() #get all bids for this item
+    max_bid = item.bids.filter(is_winner = True).first() #get the bid with the hightest price with the earliest time
     print('People who placed bids on item: ', item.name)
     for b in item_bids:
         print(':',b.bid_placed_by.username)
+    if max_bid is not None:
+        print('Max bid: ', max_bid.bid_price, ' by: ', max_bid.bid_placed_by.username)
+    
 
     #get bid for this item by the current user
     bid = Bid.objects.filter(item = item, bid_placed_by = request.user).first()
@@ -50,7 +54,8 @@ def item_detail(request, pk):
     return render(request, 'item/detail.html', {
         'item': item,
         'bid':bid_json,
-        'bids':item_bids
+        'bids':item_bids,
+        'max_bid':max_bid
     })
 
 @login_required
@@ -77,6 +82,7 @@ def submit_bid(request, pk):
             form = BidPlacementForm(request.POST, instance=bid)
 
         if form.is_valid():
+            
             if bid is None: #if no bid placed before
                 bid = form.save(commit=False)
                 bid.item = item 
