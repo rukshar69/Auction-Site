@@ -24,18 +24,31 @@
         <hr>
 
         <!-- SHOW WHO PLACED BIDS IF ANY -->
-        <div class="mt-5">
+        <div class="mt-5 mb-3">
             {% if bids|length == 0 %}
                 <h1 class="mb-6 text-2xl">No one placed a bid yet!!</h1>
             {% else %}
                 <h1 class="mb-6 text-2xl">People who placed bids:</h1>
-                {% for b in bids %}
-                    <div>
-                        <div class="p-6 bg-white rounded-b-xl">
-                            <p class="text-gray-500">{{ b.bid_placed_by.username }}: {{ b.bid_price }}</p>
-                        </div>
-                    </div>
-                {% endfor %}
+
+                <table class="table-auto">
+                    <thead>
+                      <tr>
+                        <th class="px-4 py-2">User</th>
+                        <th class="px-4 py-2">Bid Price</th>
+                        <!-- Add more column headings as needed -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for b in bids %}
+                        <tr>
+                          <td class="border px-4 py-2">{{ b.bid_placed_by.username }}</td>
+                          <td class="border px-4 py-2">{{ b.bid_price }}</td>
+                          <!-- Add more table cells (td) for each column -->
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                  
             {% endif %}
         </div>
         <hr>

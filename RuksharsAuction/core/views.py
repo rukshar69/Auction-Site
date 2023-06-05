@@ -15,6 +15,7 @@ def index(request):
     print('Items whose bids are now closing:')
     for item in items_need_to_close_bid:
         print(item.name)
+        #item_bids = item.bids.filter()
         # Modify the field value
         item.is_bid_close = True #closing the bid
         # Save the object to persist the changes
