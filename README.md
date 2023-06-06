@@ -11,6 +11,9 @@ To add **auction end datetime** using a calendar interface while adding a new it
 ## Step 5
 For admin login, you can login using your superuser credential at the *login/* endpoint. As admin, you'll see an additional button **Admin Dashboard**. By clicking on this, you can view total currently running auctions and total action value at the moment.
 
+## Step 7
+Learning [pythonanywhere](https://www.pythonanywhere.com/) to deploy the Django app there.
+
 # Packages
 - [django-tempus-dominus](https://github.com/FlipperPA/django-tempus-dominus) for adding calendar-based date time picker for front end.
 - TailwindCSS is used for prettier front end rendering
