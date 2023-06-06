@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    {% if request.user.is_superuser %}
+        <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+            <h2 class="mb-12 text-2xl text-center"><strong>Total currently running auctions: {{total_auctions}} </strong> </h2>
+
+        </div>
+
+        <hr>
+
+        <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+            <h2 class="mb-12 text-2xl text-center"><strong>Total Auction Value: {{total_auction_value}}</strong></h2>
+
+        </div>
+    {% endif %}
+
+{% endblock %}
