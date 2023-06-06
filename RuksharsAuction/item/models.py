@@ -1,5 +1,7 @@
 from django.db import models
 from core.models import CustomUser
+from django.conf import settings
+
 
 # Create your models here.
 class Item(models.Model):

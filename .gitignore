@@ -4,3 +4,4 @@ migrations*
 user.txt
 CustomUserTest
 pending_tasks.txt
+test*
