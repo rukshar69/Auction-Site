@@ -17,3 +17,6 @@ Learning [pythonanywhere](https://www.pythonanywhere.com/) to deploy the Django 
 # Packages
 - [django-tempus-dominus](https://github.com/FlipperPA/django-tempus-dominus) for adding calendar-based date time picker for front end.
 - TailwindCSS is used for prettier front end rendering
+
+# Video Demo
+Drive Link: https://drive.google.com/file/d/1QKJiDHEU1cDzsSGYZL6F26DvYObSd1TQ/view?usp=sharing 
