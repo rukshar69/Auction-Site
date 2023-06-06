@@ -10,10 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 import os
 from pathlib import Path
-load_dotenv()
+#load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,7 +23,7 @@ WEBSITE_URL = 'http://127.0.0.1:8000'
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+SECRET_KEY = 'django-insecure-of$w9w3bcf+2)08p5o))b%ay$#b2!6$hd((fkp24nf#f_@7!4x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -34,7 +34,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 AUTH_USER_MODEL = 'core.CustomUser' #Making a custom user model so that we can login using email
 
-ALLOWED_HOSTS = [ '127.0.0.1']
+ALLOWED_HOSTS = ['rukshar69.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
