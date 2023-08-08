@@ -26,6 +26,7 @@ For admin login, you can login using your superuser credential at the *login/* e
 Learning [pythonanywhere](https://www.pythonanywhere.com/) to deploy the Django app there.
 
 # Packages
+- Python 3.10
 - [django-tempus-dominus](https://github.com/FlipperPA/django-tempus-dominus) for adding calendar-based date time picker for front end.
 - TailwindCSS is used for prettier front end rendering
 
